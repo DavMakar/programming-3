@@ -1,0 +1,1 @@
+var exanak = [garun,amar,ashun,dzmer];
