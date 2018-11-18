@@ -1,9 +1,9 @@
 class Pred extends Base {
     constructor(x, y) {
-        super(x,y)
+        super(x, y)
         this.energy = 3;
-     
-       
+
+
     }
 
     getNewCoordinates() {
@@ -22,15 +22,21 @@ class Pred extends Base {
 
         this.getNewCoordinates();
 
-        
-        return  super.chooseCell(character);
+
+        return super.chooseCell(character);
 
     }
 
     movePred() {
 
         var emptyCells = this.chooseCell(0);
-        this.energy -= 4;
+        if (weather == 4) {
+            this.energy -= 5;
+        } else {
+
+            this.energy -= 4;
+        }
+
         if (emptyCells.length != 0) {
 
             var randomCells = random(emptyCells);
@@ -97,7 +103,25 @@ class Pred extends Base {
         }
     }
     multPred() {
-        if (this.energy >= 35) {
+        if (weather == 4) {
+            this.energy >= 28;
+            var emptyCells = this.chooseCell(0);
+
+            if (emptyCells.length != 0) {
+
+                var randomCells = random(emptyCells);
+                var x = randomCells[0];
+                var y = randomCells[1];
+
+                var newPred = new Pred(x, y);
+                predArr.push(newPred);
+
+                matrix[y][x] = 3;
+                this.energy = 3;
+            }
+        }
+        else {
+            this.energy >= 32
 
 
             var emptyCells = this.chooseCell(0);

@@ -129,7 +129,7 @@ class Sanitar extends Base {
         }
     }
     multSanitar() {
-        if (this.healt >= 185 && this.kerac >= 3) {
+        if (this.healt >= 170 && this.kerac >= 3) {
 
             var emptyCells = this.chooseCell(0);
 

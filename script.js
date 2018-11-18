@@ -1,4 +1,4 @@
-//bari or
+
 var matrix = [
 ];
 var sanitArr = [];
@@ -11,6 +11,7 @@ var m = 30;
 var n = 30;
 var weather = 1;
 var textweather = document.getElementById("exanak");
+var iradarcutyun = document.getElementById("b1");
 
 setInterval(function () {
     weather++; if (weather > 4) {
@@ -32,6 +33,7 @@ function myfunction() {
         textweather.innerHTML = "Garun";
     }
 }
+
 
 function setup() {
 
@@ -111,7 +113,7 @@ function drawMatrix() {
         for (var x = 0; x < matrix[y].length; x++) {
             myfunction();
             if (matrix[y][x] == 1) {
-                fill("green");
+                fill(109, 241, 9);
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 0) {
@@ -199,7 +201,47 @@ function drawMatrix() {
                     rect(x * side, y * side, side, side);
                 }
             }
+            if (weather == 2) {
+                myfunction();
+                if (matrix[y][x] == 1) {
+                    fill("green");
+                    rect(x * side, y * side, side, side);
+                }
+                else if (matrix[y][x] == 0) {
+                    fill("#acacac");
+                    rect(x * side, y * side, side, side);
+                }
+                else if (matrix[y][x] == 2) {
+                    fill("yellow");
+                    rect(x * side, y * side, side, side);
+                }
+                else if (matrix[y][x] == 3) {
+                    fill("red");
+                    rect(x * side, y * side, side, side);
+                }
+                else if (matrix[y][x] == 4) {
+
+                    fill(0, 0, 0, 255);
+
+                    rect(x * side, y * side, side, side);
+                }
+                else if (matrix[y][x] == 5) {
+
+                    fill(73, 255, 131, 255);
+                    rect(x * side, y * side, side, side);
+                }
+            }
         }
 
+        
+    }
+}
+
+function mouseClicked() {
+    if ( mouseY <= matrix[0].length * side  && mouseX <= matrix.length * side && mouseX >0 && mouseY >0  ){
+
+    
+    var moX = console.log(mouseX);
+    var moY = console.log(mouseY);
     }
 }

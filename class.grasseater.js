@@ -1,8 +1,14 @@
 class GrassEater  extends Base{
     constructor(x, y) {
         super(x,y)
-        this.energy = 6;
-
+        
+        if(weather == 4)
+        {
+            this.energy = 5;
+        }
+        else{
+            this.energy =6;
+        }
       
     }
     getNewCoordinates() {
@@ -108,7 +114,12 @@ class GrassEater  extends Base{
                 grassEater.push(newGrassEater);
 
                 matrix[y][x] = 2;
-                this.energy = 6;
+                if(weather == 4){
+                    this.energy = 5;
+                }else{
+                    this.energy = 6;
+                }
+                
             }
         }
     }

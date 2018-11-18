@@ -1,7 +1,7 @@
 class Grass extends Base {
     constructor(x, y) {
         super(x, y)
-        this.multiply = Math.round(Math.random(2, 4));
+        this.multiply = 3;
 
 
 
@@ -12,10 +12,11 @@ class Grass extends Base {
             this.multiply=0;
         }
         else if (weather == 3){
-          this.multiply =2;   
+            this.multiply++;
+      
           var emptyCells = this.chooseCell(0);
             var randomCells = random(emptyCells);
-            if (emptyCells.length != 0 && this.multiply >= 2) {
+            if (emptyCells.length != 0 && this.multiply >= 4) {
 
 
                 var x = randomCells[0];
@@ -31,7 +32,7 @@ class Grass extends Base {
             this.multiply++    
             var emptyCells = this.chooseCell(0);
             var randomCells = random(emptyCells);
-            if (emptyCells.length != 0 && this.multiply >= 3) {
+            if (emptyCells.length != 0 && this.multiply >= 5) {
 
 
                 var x = randomCells[0];
@@ -44,6 +45,7 @@ class Grass extends Base {
             }
         }
     }
+}
         /*else if (weather == 3) {
             this.multiply = this.multiply * 3;
             this.multiply--;
