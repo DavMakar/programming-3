@@ -1,9 +1,9 @@
-class AntiSanitar extends Base {
+/*class AntiSanitar extends Base {
     constructor(x, y) {
         super(x,y)
         this.healt = 100;
         this.kerac = 0;
-       /* this.directions = [
+        this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
             [this.x + 1, this.y - 1],
@@ -12,7 +12,7 @@ class AntiSanitar extends Base {
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
-        ];*/
+        ];
     }
 
     getNewCoordinates() {
@@ -49,7 +49,7 @@ class AntiSanitar extends Base {
                 }
             }
 
-        } */
+        } 
         return super.chooseCell(character);
 
     }
@@ -126,17 +126,17 @@ class AntiSanitar extends Base {
     dieAntiSanitar() {
         if (this.healt <= 0) {
             matrix[this.y][this.x] = 0;
-            for (var i in sanitArr) {
-                if (this.x == sanitArr[i].x && this.y == sanitArr[i].y) {
+            for (var i in antiSanitArr) {
+                if (this.x == antiSanitArr[i].x && this.y == antiSanitArr[i].y) {
 
-                    sanitArr.splice(i, 1);
+                    antiSanitArr.splice(i, 1);
 
                     break;
                 }
             }
         }
     }
-    multSanitar() {
+    multAntiSanitar() {
         if (this.healt >= 200 && this.kerac >= 3) {
 
             var emptyCells = this.chooseCell(0);
@@ -157,3 +157,4 @@ class AntiSanitar extends Base {
         }
     }
 }
+*/
