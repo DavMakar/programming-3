@@ -1,4 +1,4 @@
-class Sanitar extends Base {
+class AntiSanitar extends Base {
     constructor(x, y) {
         super(x,y)
         this.healt = 100;
@@ -25,6 +25,14 @@ class Sanitar extends Base {
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
+            [this.x, this.y + 2],
+            [this.x + 2, this.y + 2],
+            [this.x - 2, this.y - 2],
+            [this.x, this.y - 2],
+            [this.x + 2, this.y - 2],
+            [this.x - 2, this.y],
+            [this.x + 2, this.y],
+            [this.x - 2, this.y + 2],
         ];
     }
     chooseCell(character) {
@@ -45,7 +53,7 @@ class Sanitar extends Base {
         return super.chooseCell(character);
 
     }
-    moveSanitar() {
+    moveAntiSanitar() {
 
         var emptyCells0 = this.chooseCell(0);
         var emptyCells1 = this.chooseCell(1);
@@ -58,7 +66,7 @@ class Sanitar extends Base {
 
 
 
-            matrix[y][x] = 5;
+            matrix[y][x] = 6;
             matrix[this.y][this.x] = 0;
             this.x = x;
             this.y = y;
@@ -71,7 +79,7 @@ class Sanitar extends Base {
 
 
 
-            matrix[y][x] = 5;
+            matrix[y][x] = 6;
             matrix[this.y][this.x] = 0;
             this.x = x;
             this.y = y;
@@ -80,8 +88,8 @@ class Sanitar extends Base {
         }
 
     }
-    eatSanitar() {
-        var emptyCells = this.chooseCell(4);
+    eatAntiSanitar() {
+        var emptyCells = this.chooseCell(5);
         if (emptyCells.length != 0) {
 
 
@@ -91,31 +99,31 @@ class Sanitar extends Base {
 
 
 
-            matrix[y][x] = 5;
+            matrix[y][x] = 6;
             matrix[this.y][this.x] = 0;
             this.x = x;
             this.y = y;
 
-            this.healt += 50;
+            this.healt += 80;
             this.kerac++;
 
-            for (var i in virusArr) {
-                if (this.x == virusArr[i].x && this.y == virusArr[i].y) {
-                    virusArr.splice(i, 1);
+            for (var i in sanitArr) {
+                if (this.x == sanitArr[i].x && this.y == sanitArr[i].y) {
+                    sanitArr.splice(i, 1);
                     break;
                 }
 
             }
-            this.multSanitar();
+            this.multAntiSanitar();
         }
         else {
-            this.moveSanitar();
-            this.dieSanitar();
+            this.moveAntiSanitar();
+            this.dieAntiSanitar();
             this.healt -= 5;
         }
     }
 
-    dieSanitar() {
+    dieAntiSanitar() {
         if (this.healt <= 0) {
             matrix[this.y][this.x] = 0;
             for (var i in sanitArr) {
@@ -129,7 +137,7 @@ class Sanitar extends Base {
         }
     }
     multSanitar() {
-        if (this.healt >= 160 && this.kerac >= 3) {
+        if (this.healt >= 200 && this.kerac >= 3) {
 
             var emptyCells = this.chooseCell(0);
 
@@ -139,10 +147,10 @@ class Sanitar extends Base {
                 var x = rand[0];
                 var y = rand[1];
 
-                var newSanitar = new Sanitar(x, y);
-                sanitArr.push(newSanitar);
+                var newAntiSanitar = new AntiSanitar(x, y);
+                antiSanitArr.push(newAntiSanitar);
 
-                matrix[y][x] = 5;
+                matrix[y][x] = 6;
                 this.healt = 100;
                 this.kerac = 0;
             }

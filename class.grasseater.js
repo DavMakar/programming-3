@@ -1,15 +1,14 @@
-class GrassEater  extends Base{
+class GrassEater extends Base {
     constructor(x, y) {
-        super(x,y)
-        
-        if(weather == 4)
-        {
+        super(x, y)
+        this.gender = Math.round(Math.random() * 1);
+        if (weather == 4) {
             this.energy = 5;
         }
-        else{
-            this.energy =6;
+        else {
+            this.energy = 6;
         }
-      
+
     }
     getNewCoordinates() {
         this.directions = [
@@ -101,6 +100,7 @@ class GrassEater  extends Base{
         if (this.energy >= 8) {
 
 
+
             var emptyCells = this.chooseCell(0);
 
             if (emptyCells.length != 0) {
@@ -114,13 +114,43 @@ class GrassEater  extends Base{
                 grassEater.push(newGrassEater);
 
                 matrix[y][x] = 2;
-                if(weather == 4){
+                if (weather == 4) {
                     this.energy = 5;
-                }else{
+                } else {
                     this.energy = 6;
                 }
-                
+
             }
         }
     }
+}           /* else if (this.gender == 1) {
+                var emptyCells = this.chooseCell(0);
+
+                if (emptyCells.length != 0) {
+
+                    var randomCells = random(emptyCells);
+
+                    var x = randomCells[0];
+                    var y = randomCells[1];
+
+                    var newGrassEaterVorc = new GrassEater(x, y);
+                    grassEaterVorc.push(newGrassEaterVorc);
+
+                    matrix[y][x] = 2;
+                    if (weather == 4) {
+                        this.energy = 5;
+                    } else {
+                        this.energy = 6;
+                    }
+
+                }
+            }
+
+        }   
+    }
 }
+class GrassEaterEg extends GrassEater {
+    constructor(x, y) {
+    super(x, y)
+    }
+*/

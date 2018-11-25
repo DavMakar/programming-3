@@ -149,7 +149,7 @@ class Virus extends Base {
                         predArr.push(newPred);
                         matrix[this.y][this.x] = 3;
                     }
-
+                    
 
                     break;
                 }
