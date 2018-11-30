@@ -77,7 +77,7 @@ class MegaVirus extends Base {
             matrix[this.y][this.x] = 0;
             this.x = x;
             this.y = y;
-            console.log("Sharjvum");
+            //console.log("Sharjvum");
         }
         else if (emptyCells1.length != 0) {
 
@@ -91,7 +91,7 @@ class MegaVirus extends Base {
             matrix[this.y][this.x] = 0;
             this.x = x;
             this.y = y;
-            console.log("Sharjvum");
+            //console.log("Sharjvum");
 
         }
 
@@ -127,7 +127,7 @@ class MegaVirus extends Base {
 
             }
             this.multMegaVirus();
-            console.log("eat1");
+            //console.log("eat1");
         }
         else if (emptyCells2.length != 0) {
 
@@ -152,7 +152,7 @@ class MegaVirus extends Base {
 
             }
             this.multMegaVirus();
-            console.log("eat1");
+            //console.log("eat1");
         }
         
         else if (emptyCells3.length != 0) {
@@ -179,7 +179,7 @@ class MegaVirus extends Base {
 
             }
             this.multMegaVirus();
-            console.log("eat1");
+            //console.log("eat1");
         }
         else if (emptyCells4.length != 0) {
 
@@ -204,8 +204,8 @@ class MegaVirus extends Base {
                 }
 
             }
-            this.multMegaVrius();
-            console.log("eat1");
+            this.multMegaVirus();
+            //console.log("eat1");
         }
         else if (emptyCells5.length != 0) {
 
@@ -231,12 +231,12 @@ class MegaVirus extends Base {
 
             }
             this.multMegaVirus();
-            console.log("eat1");
+            //console.log("eat1");
         }
         else {
             this.moveMegaVirus();
             this.dieMegaVirus();
-                this.healt -=15;
+                this.healt -=25;
         }
     }
 
@@ -254,7 +254,7 @@ class MegaVirus extends Base {
         }
     }
     multMegaVirus() {
-        if (this.kerac >= 3) {
+        if (this.kerac >= 1) {
 
             var emptyCells = this.chooseCell(0);
 
@@ -270,7 +270,7 @@ class MegaVirus extends Base {
                 matrix[y][x] = 6;
                 this.healt = 100;
                 this.kerac = 0;
-                console.log("mult");
+              //  console.log("mult");
             }
         }
     }
