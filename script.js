@@ -1,7 +1,7 @@
 
-var matrix = [
-];
-//var antiSanitArr = [];
+
+var matrix = [];
+var megaVirusArr = [];
 var sanitArr = [];
 var predArr = [];
 var grassArr = [];
@@ -14,6 +14,9 @@ var n = 30;
 var weather = 1;
 var textweather = document.getElementById("exanak");
 var iradarcutyun = document.getElementById("b1");
+
+
+
 
 setInterval(function () {
     weather++; if (weather > 4) {
@@ -38,10 +41,11 @@ function myfunction() {
 
 
 function setup() {
-    var timerId = setInterval(function() {
-        textweather.innerHTML ="Unikal";
-         
-      }, 8000);
+    setInterval(unikal,5000);
+    function unikal(){
+        console.log("unikal");
+        matrix[Math.floor(random(m))][Math.floor(random(n))]=6
+    }
     frameRate(13);
 
     background('#acacac');
@@ -84,10 +88,10 @@ function setup() {
                 var sani = new Sanitar(x, y);
                 sanitArr.push(sani);
             }
-          /*  else if (matrix[y][x] == 6) {
-                var anti = new AntiSanitar(x, y);
-                antiSanitArr.push(anti);
-            }*/
+            else if (matrix[y][x] == 6) {
+                var newMegaVirus = new MegaVirus(x, y);
+                megaVirusArr.push(newMegaVirus);
+            }
         }
 
     }
@@ -133,9 +137,9 @@ function draw() {
     for (var i = 0; i < sanitArr.length; i++) {
         sanitArr[i].eatSanitar();
     }
-    //  for (var i = 0; i < antiSanitArr.length; i++) {
-    //    antiSanitArr[i].eatAntiSanitar();
-    // }
+      for (var i = 0; i < megaVirusArr.length; i++) {
+        megaVirusArr[i].eatMegaVirus();
+     }
 
 }
 
@@ -173,10 +177,10 @@ function drawMatrix() {
                 fill(73, 255, 131, 255);
                 rect(x * side, y * side, side, side);
             }
-            // else if (matrix[y][x] == 6){
-            //    fill(70,255,120,255 );
-            //   rect(x * side, y * side, side, side);
-            // }
+             else if (matrix[y][x] == 6){
+                fill(5,17,255,255 );
+              rect(x * side, y * side, side, side);
+            }
 
             if (weather == 4) {
                 myfunction();
@@ -207,10 +211,10 @@ function drawMatrix() {
                     fill(73, 255, 131, 255);
                     rect(x * side, y * side, side, side);
                 }
-                //else if (matrix[y][x] == 6){
-                //   fill(70,255,120,255 );
-                //  rect(x * side, y * side, side, side);
-                //}
+                else if (matrix[y][x] == 6){
+                    fill(5,17,255,255 );
+                  rect(x * side, y * side, side, side);
+                }
             }
             if (weather == 3) {
 
@@ -242,10 +246,10 @@ function drawMatrix() {
                     fill(73, 255, 131, 255);
                     rect(x * side, y * side, side, side);
                 }
-                /*  else if (matrix[y][x] == 6){
-                      fill(70,255,120,255 );
+                  else if (matrix[y][x] == 6){
+                      fill(5,17,255,255 );
                       rect(x * side, y * side, side, side);
-                  } */
+                  } 
             }
             if (weather == 2) {
                 myfunction();
@@ -276,20 +280,19 @@ function drawMatrix() {
                     fill(73, 255, 131, 255);
                     rect(x * side, y * side, side, side);
                 }
-            }
-        }
-    }
-}
-               /* else if (matrix[y][x] == 6){
-                    fill(70,255,120,255 );
+                else if (matrix[y][x] == 6){
+                    fill(5,17,255,255 );
                     rect(x * side, y * side, side, side);
                 }
             }
         }
-
-
     }
 }
+    
+
+
+    
+/*
 
 function mouseClicked() {
     if (mouseY <= matrix[0].length * side && mouseX <= matrix.length * side && mouseX > 0 && mouseY > 0) {

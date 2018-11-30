@@ -1,8 +1,8 @@
-/*class AntiSanitar extends Base {
+class MegaVirus extends Base {
     constructor(x, y) {
         super(x,y)
-        this.healt = 100;
-        this.kerac = 0;
+        this.kerac=0;
+        this.healt=100;
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -11,7 +11,15 @@
             [this.x + 1, this.y],
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
+            [this.x + 1, this.y + 1],
+            [this.x, this.y + 2],
+            [this.x + 2, this.y + 2],
+            [this.x - 2, this.y - 2],
+            [this.x, this.y - 2],
+            [this.x + 2, this.y - 2],
+            [this.x - 2, this.y],
+            [this.x + 2, this.y],
+            [this.x - 2, this.y + 2],
         ];
     }
 
@@ -25,14 +33,14 @@
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
-            [this.x, this.y + 2],
+           /* [this.x, this.y + 2],
             [this.x + 2, this.y + 2],
             [this.x - 2, this.y - 2],
             [this.x, this.y - 2],
             [this.x + 2, this.y - 2],
             [this.x - 2, this.y],
             [this.x + 2, this.y],
-            [this.x - 2, this.y + 2],
+            [this.x - 2, this.y + 2],*/
         ];
     }
     chooseCell(character) {
@@ -49,12 +57,11 @@
                 }
             }
 
-        } 
+        } */
         return super.chooseCell(character);
 
     }
-    moveAntiSanitar() {
-
+    moveMegaVirus() {
         var emptyCells0 = this.chooseCell(0);
         var emptyCells1 = this.chooseCell(1);
 
@@ -70,6 +77,7 @@
             matrix[this.y][this.x] = 0;
             this.x = x;
             this.y = y;
+            console.log("Sharjvum");
         }
         else if (emptyCells1.length != 0) {
 
@@ -83,17 +91,23 @@
             matrix[this.y][this.x] = 0;
             this.x = x;
             this.y = y;
-
+            console.log("Sharjvum");
 
         }
 
     }
-    eatAntiSanitar() {
-        var emptyCells = this.chooseCell(5);
-        if (emptyCells.length != 0) {
+    eatMegaVirus() {
+        var emptyCells5 = this.chooseCell(5);
+        var emptyCells4 = this.chooseCell(4);
+        var emptyCells3 = this.chooseCell(3);
+        var emptyCells2 = this.chooseCell(2);
+        var emptyCells1 = this.chooseCell(1);
+
+        if (emptyCells1.length != 0) {
 
 
-            var randomCells = random(emptyCells);
+            var randomCells = random(emptyCells1);
+
             var x = randomCells[0];
             var y = randomCells[1];
 
@@ -103,10 +117,112 @@
             matrix[this.y][this.x] = 0;
             this.x = x;
             this.y = y;
-
-            this.healt += 80;
             this.kerac++;
+     
+            for (var i in grassArr) {
+                if (this.x == grassArr[i].x && this.y == grassArr[i].y) {
+                    grassArr.splice(i, 1);
+                    break;
+                }
 
+            }
+            this.multMegaVirus();
+            console.log("eat1");
+        }
+        else if (emptyCells2.length != 0) {
+
+
+            var randomCells = random(emptyCells2);
+
+            var x = randomCells[0];
+            var y = randomCells[1];
+
+
+            matrix[y][x] = 6;
+            matrix[this.y][this.x] = 0;
+            this.x = x;
+            this.y = y;
+
+            this.kerac++;
+            for (var i in grassEater) {
+                if (this.x == grassEater[i].x && this.y == grassEater[i].y) {
+                    grassEater.splice(i, 1);
+                    break;
+                }
+
+            }
+            this.multMegaVirus();
+            console.log("eat1");
+        }
+        
+        else if (emptyCells3.length != 0) {
+
+
+            var randomCells = random(emptyCells3);
+
+            var x = randomCells[0];
+            var y = randomCells[1];
+
+
+
+            matrix[y][x] = 6;
+            matrix[this.y][this.x] = 0;
+            this.x = x;
+            this.y = y;
+            this.kerac++;
+     
+            for (var i in predArr) {
+                if (this.x == predArr[i].x && this.y == predArr[i].y) {
+                    predArr.splice(i, 1);
+                    break;
+                }
+
+            }
+            this.multMegaVirus();
+            console.log("eat1");
+        }
+        else if (emptyCells4.length != 0) {
+
+
+            var randomCells = random(emptyCells4);
+
+            var x = randomCells[0];
+            var y = randomCells[1];
+
+
+
+            matrix[y][x] = 6;
+            matrix[this.y][this.x] = 0;
+            this.x = x;
+            this.y = y;
+            this.kerac++;
+     
+            for (var i in virusArr) {
+                if (this.x == virusArr[i].x && this.y == virusArr[i].y) {
+                    virusArr.splice(i, 1);
+                    break;
+                }
+
+            }
+            this.multMegaVrius();
+            console.log("eat1");
+        }
+        else if (emptyCells5.length != 0) {
+
+
+            var randomCells = random(emptyCells5);
+
+            var x = randomCells[0];
+            var y = randomCells[1];
+
+
+
+            matrix[y][x] = 6;
+            matrix[this.y][this.x] = 0;
+            this.x = x;
+            this.y = y;
+            this.kerac++;
+     
             for (var i in sanitArr) {
                 if (this.x == sanitArr[i].x && this.y == sanitArr[i].y) {
                     sanitArr.splice(i, 1);
@@ -114,30 +230,31 @@
                 }
 
             }
-            this.multAntiSanitar();
+            this.multMegaVirus();
+            console.log("eat1");
         }
         else {
-            this.moveAntiSanitar();
-            this.dieAntiSanitar();
-            this.healt -= 5;
+            this.moveMegaVirus();
+            this.dieMegaVirus();
+                this.healt -=15;
         }
     }
 
-    dieAntiSanitar() {
+    dieMegaVirus() {
         if (this.healt <= 0) {
             matrix[this.y][this.x] = 0;
-            for (var i in antiSanitArr) {
-                if (this.x == antiSanitArr[i].x && this.y == antiSanitArr[i].y) {
+            for (var i in megaVirusArr) {
+                if (this.x == megaVirusArr[i].x && this.y == megaVirusArr[i].y) {
 
-                    antiSanitArr.splice(i, 1);
+                    megaVirusArr.splice(i, 1);
 
                     break;
                 }
             }
         }
     }
-    multAntiSanitar() {
-        if (this.healt >= 200 && this.kerac >= 3) {
+    multMegaVirus() {
+        if (this.kerac >= 3) {
 
             var emptyCells = this.chooseCell(0);
 
@@ -147,14 +264,14 @@
                 var x = rand[0];
                 var y = rand[1];
 
-                var newAntiSanitar = new AntiSanitar(x, y);
-                antiSanitArr.push(newAntiSanitar);
+                var newMegaVirus = new MegaVirus(x, y);
+                megaVirusArr.push(newMegaVirus);
 
                 matrix[y][x] = 6;
                 this.healt = 100;
                 this.kerac = 0;
+                console.log("mult");
             }
         }
     }
 }
-*/
