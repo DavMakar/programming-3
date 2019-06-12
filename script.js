@@ -24,7 +24,7 @@ setInterval(function () {
         weather = 1;
     }
  
-}, 2000);
+}, 3000);
 
 function myfunction() {
 
@@ -46,58 +46,51 @@ function setup() {
  
     frameRate(13);
 
-    background('#acacac');
-    for (var y = 0; y < n; y++) {
-        matrix[y] = [];
+   
+    // for (var y = 0; y < n; y++) {
+    //     matrix[y] = [];
 
-        for (var x = 0; x < m; x++) {
-            matrix[y][x] = Math.round(Math.random() * 3);
-        }
-    }
+    //     for (var x = 0; x < m; x++) {
+    //         matrix[y][x] = Math.round(Math.random() * 3);
+    //     }
+    // }
 
-    matrix[Math.floor(random(m))][Math.floor(random(n))] = 4;
-    matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
-    matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
-    matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
-    setInterval(unikal,5000);
-    function unikal(){
-        console.log("unikal");
-        matrix[Math.floor(random(m))][Math.floor(random(n))]=6;
-    }
-    //matrix[Math.floor(random(m))][Math.floor(random(n))] = 6;
+    // matrix[Math.floor(random(m))][Math.floor(random(n))] = 4;
+    // matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
+    // matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
+    // matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
+   
+    // for (var y = 0; y < matrix.length; y++) {
+    //     for (var x = 0; x < matrix[y].length; x++) {
+    //         if (matrix[y][x] == 1) {
+    //             var gr = new Grass(x, y);
+    //             grassArr.push(gr);
+    //         }
+    //         else if (matrix[y][x] == 2) {
 
-    createCanvas(matrix[0].length * side + 1, matrix.length * side + 1);
+    //             var gre = new GrassEater(x, y);
+    //             grassEater.push(gre);
+    //         }
+    //         else if (matrix[y][x] == 3) {
+    //             var pre = new Pred(x, y);
+    //             predArr.push(pre);
+    //         }
+    //         else if (matrix[y][x] == 4) {
+    //             var vir = new Virus(x, y);
+    //             virusArr.push(vir);
+    //         }
+    //         else if (matrix[y][x] == 5) {
+    //             var sani = new Sanitar(x, y);
+    //             sanitArr.push(sani);
+    //         }
+    //         else if (matrix[y][x] == 6) {
+    //             var newMegaVirus = new MegaVirus(x, y);
+    //             megaVirusArr.push(newMegaVirus);
+    //         }
+    //     }
 
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 1) {
-                var gr = new Grass(x, y);
-                grassArr.push(gr);
-            }
-            else if (matrix[y][x] == 2) {
+    // }
 
-                var gre = new GrassEater(x, y);
-                grassEater.push(gre);
-            }
-            else if (matrix[y][x] == 3) {
-                var pre = new Pred(x, y);
-                predArr.push(pre);
-            }
-            else if (matrix[y][x] == 4) {
-                var vir = new Virus(x, y);
-                virusArr.push(vir);
-            }
-            else if (matrix[y][x] == 5) {
-                var sani = new Sanitar(x, y);
-                sanitArr.push(sani);
-            }
-            else if (matrix[y][x] == 6) {
-                var newMegaVirus = new MegaVirus(x, y);
-                megaVirusArr.push(newMegaVirus);
-            }
-        }
-
-    }
 }
 function draw() {
 
@@ -141,15 +134,19 @@ function draw() {
     for (var i = 0; i < sanitArr.length; i++) {
         sanitArr[i].eatSanitar();
     }
-    for (var i = 0; i < megaVirusArr.length; i++) {
-        megaVirusArr[i].eatMegaVirus();
-    }
+    // for (var i = 0; i < megaVirusArr.length; i++) {
+    //     megaVirusArr[i].eatMegaVirus();
+    // }
 
 }
 
 
 
-function drawMatrix() {
+function drawMatrix(data) {
+    matrix = data.matrix;
+  
+    createCanvas(matrix[0].length * side + 1, matrix.length * side + 1);
+        background('#acacac');
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -181,10 +178,10 @@ function drawMatrix() {
                 fill(73, 255, 131, 255);
                 rect(x * side, y * side, side, side);
             }
-            else if (matrix[y][x] == 6) {
-                fill(5, 17, 255, 255);
-                rect(x * side, y * side, side, side);
-            }
+            // else if (matrix[y][x] == 6) {
+            //     fill(5, 17, 255, 255);
+            //     rect(x * side, y * side, side, side);
+            // }
 
             if (weather == 4) {
                 myfunction();
@@ -215,10 +212,10 @@ function drawMatrix() {
                     fill(73, 255, 131, 255);
                     rect(x * side, y * side, side, side);
                 }
-                else if (matrix[y][x] == 6) {
-                    fill(5, 17, 255, 255);
-                    rect(x * side, y * side, side, side);
-                }
+                // else if (matrix[y][x] == 6) {
+                //     fill(5, 17, 255, 255);
+                //     rect(x * side, y * side, side, side);
+                // }
             }
             if (weather == 3) {
 
@@ -250,10 +247,10 @@ function drawMatrix() {
                     fill(73, 255, 131, 255);
                     rect(x * side, y * side, side, side);
                 }
-                else if (matrix[y][x] == 6) {
-                    fill(5, 17, 255, 255);
-                    rect(x * side, y * side, side, side);
-                }
+                // else if (matrix[y][x] == 6) {
+                //     fill(5, 17, 255, 255);
+                //     rect(x * side, y * side, side, side);
+                // }
             }
             if (weather == 2) {
                 myfunction();
@@ -284,10 +281,10 @@ function drawMatrix() {
                     fill(73, 255, 131, 255);
                     rect(x * side, y * side, side, side);
                 }
-                else if (matrix[y][x] == 6) {
-                    fill(5, 17, 255, 255);
-                    rect(x * side, y * side, side, side);
-                }
+                // else if (matrix[y][x] == 6) {
+                //     fill(5, 17, 255, 255);
+                //     rect(x * side, y * side, side, side);
+                // }
             }
         }
     }
@@ -296,13 +293,3 @@ function drawMatrix() {
 
 
 
-/*
-
-function mouseClicked() {
-    if (mouseY <= matrix[0].length * side && mouseX <= matrix.length * side && mouseX > 0 && mouseY > 0) {
-
-
-        var moX = console.log(mouseX);
-        var moY = console.log(mouseY);
-    }
-}*/

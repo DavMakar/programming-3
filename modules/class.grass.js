@@ -1,10 +1,9 @@
-class Grass extends Base {
+const Base = require("./class.base")
+
+module.exports = class Grass extends Base {
     constructor(x, y) {
         super(x, y)
         this.multiply = 3;
-
-
-
     }
     mult() {
 

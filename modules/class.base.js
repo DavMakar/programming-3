@@ -1,4 +1,4 @@
-class Base {
+module.exports = class Base {
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -17,9 +17,6 @@ class Base {
 
     }
     chooseCell(character) {
-
-
-
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];

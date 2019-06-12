@@ -1,4 +1,6 @@
-class GrassEater extends Base {
+const Base = require("./class.base")
+
+module.exports = class GrassEater extends Base {
     constructor(x, y) {
         super(x, y)
         this.gender = Math.round(Math.random() * 1);
@@ -8,7 +10,6 @@ class GrassEater extends Base {
         else {
             this.energy = 6;
         }
-
     }
     getNewCoordinates() {
         this.directions = [
@@ -23,15 +24,11 @@ class GrassEater extends Base {
         ];
     }
     chooseCell(character) {
-
         this.getNewCoordinates();
         return super.chooseCell(character);
-
     }
 
-
     move() {
-
         var emptyCells = this.chooseCell(0);
         this.energy--;
 

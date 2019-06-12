@@ -1,11 +1,10 @@
-class Pred extends Base {
+const Base = require('./class.base')
+
+module.exports=class Pred extends Base {
     constructor(x, y) {
         super(x, y)
         this.energy = 3;
-
-
     }
-
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -19,12 +18,8 @@ class Pred extends Base {
         ];
     }
     chooseCell(character) {
-
         this.getNewCoordinates();
-
-
         return super.chooseCell(character);
-
     }
 
     movePred() {

@@ -1,4 +1,6 @@
-class Virus extends Base {
+const Base = require("./class.base");
+
+module.exports = class Virus extends Base {
     constructor(x, y) {
         super(x,y);
 
