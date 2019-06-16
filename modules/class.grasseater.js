@@ -1,9 +1,10 @@
 const Base = require("./class.base")
+const random = require("./random")
 
 module.exports = class GrassEater extends Base {
     constructor(x, y) {
         super(x, y)
-        this.gender = Math.round(Math.random() * 1);
+        
         if (weather == 4) {
             this.energy = 5;
         }
@@ -30,11 +31,11 @@ module.exports = class GrassEater extends Base {
 
     move() {
         var emptyCells = this.chooseCell(0);
-        this.energy--;
+        var randomCells = random(emptyCells);
 
         if (emptyCells.length != 0) {
-            var randomCells = random(emptyCells);
-
+            this.energy--;
+            
             var x = randomCells[0];
             var y = randomCells[1];
 
@@ -52,9 +53,9 @@ module.exports = class GrassEater extends Base {
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 0;
 
-            for (var i in grassEater) {
-                if (this.x == grassEater[i].x && this.y == grassEater[i].y) {
-                    grassEater.splice(i, 1);
+            for (var i in grassEaterArr) {
+                if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
+                    grassEaterArr.splice(i, 1);
                     var RNG = random(0, 10);
                     if (RNG >= 5) {
                         matrix[this.y][this.x] = 4;
@@ -70,6 +71,7 @@ module.exports = class GrassEater extends Base {
         if (emptyCells.length != 0) {
 
             var randomCells = random(emptyCells);
+            
             var x = randomCells[0];
             var y = randomCells[1];
 
@@ -108,7 +110,7 @@ module.exports = class GrassEater extends Base {
                 var y = randomCells[1];
 
                 var newGrassEater = new GrassEater(x, y);
-                grassEater.push(newGrassEater);
+                grassEaterArr.push(newGrassEater);
 
                 matrix[y][x] = 2;
                 if (weather == 4) {

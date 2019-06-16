@@ -1,5 +1,5 @@
 const Base = require('./class.base')
-
+const random = require("./random")
 module.exports=class Pred extends Base {
     constructor(x, y) {
         super(x, y)
@@ -64,10 +64,10 @@ module.exports=class Pred extends Base {
             this.x = x;
             this.y = y;
 
-            for (var i in grassEater) {
+            for (var i in grassEaterArr) {
                 this.energy++;
-                if (this.x == grassEater[i].x && this.y == grassEater[i].y) {
-                    grassEater.splice(i, 1);
+                if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
+                    grassEaterArr.splice(i, 1);
                     break;
                 }
             }

@@ -1,10 +1,28 @@
 const Base = require("./class.base")
-
+const random = require("./random")
 module.exports = class Grass extends Base {
     constructor(x, y) {
         super(x, y)
         this.multiply = 3;
     }
+    getNewCoordinates() {
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+    }
+    chooseCell(character) {
+        this.getNewCoordinates();
+        return super.chooseCell(character);
+    }
+
+
     mult() {
 
         if (weather == 4) {

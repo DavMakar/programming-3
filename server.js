@@ -3,6 +3,7 @@ const GrassEater = require("./modules/class.grasseater")
 const Pred = require("./modules/class.predator")
 const Virus = require("./modules/class.virus")
 const Sanitar = require("./modules/class.sanitar")
+const random = require("./modules/random");
 
 matrix = [];
 grassArr = [];
@@ -11,8 +12,9 @@ predArr = [];
 virusArr = [];
 sanitArr = [];
 grassHashiv = 0;
+weather = 1;
 
-function matrixGenerator(virusArr, sanitArr) {
+function matrixGenerator(n, m, virusArr, sanitArr) {
     for (var y = 0; y < n; y++) {
         matrix[y] = [];
 
@@ -21,17 +23,17 @@ function matrixGenerator(virusArr, sanitArr) {
         }
     }
     for (let i = 0; i < virusArr; i++) {
-        let customX = Math.floor(random(matrixSize));
-        let customY = Math.floor(random(matrixSize));
+        let customX = Math.floor(random(n));
+        let customY = Math.floor(random(m));
         matrix[customY][customX] = 4;
     }
     for (let i = 0; i < sanitArr; i++) {
-        let customX = Math.floor(random(matrixSize));
-        let customY = Math.floor(random(matrixSize));
+        let customX = Math.floor(random(n));
+        let customY = Math.floor(random(m));
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(1, 3)
+matrixGenerator(30, 30, 1, 3)
 
 var express = require('express');
 var app = express();
@@ -54,7 +56,7 @@ function creatingObjects() {
             else if (matrix[y][x] == 2) {
 
                 var gre = new GrassEater(x, y);
-                grassEater.push(gre);
+                grassEaterArr.push(gre);
             }
             else if (matrix[y][x] == 3) {
                 var pre = new Pred(x, y);
@@ -68,10 +70,10 @@ function creatingObjects() {
                 var sani = new Sanitar(x, y);
                 sanitArr.push(sani);
             }
-            else if (matrix[y][x] == 6) {
-                var newMegaVirus = new MegaVirus(x, y);
-                megaVirusArr.push(newMegaVirus);
-            }
+            // else if (matrix[y][x] == 6) {
+            //     var newMegaVirus = new MegaVirus(x, y);
+            //     megaVirusArr.push(newMegaVirus);
+            // }
         }
 
     }
@@ -79,32 +81,41 @@ function creatingObjects() {
 creatingObjects()
 
 function game() {
-    for (var i in grassArr) {
-        grassArr[i].mult();
+    if (grassArr[0] !== undefined) {
+        for (var i in grassArr) {
+            grassArr[i].mult();
+        }
     }
-    for (var i in grassEater) {
-        grassEater[i].eat();
+    if (grassEaterArr[0] !== undefined) {
+        for (var i in grassEaterArr) {
+            grassEaterArr[i].eat();
+        }
     }
-
-    for (var i in predArr) {
-        predArr[i].eatPred();
+    if (predArr[0] !== undefined) {
+        for (var i in predArr) {
+            predArr[i].eatPred();
+        }
     }
-
-    for (var i = 0; i < virusArr.length; i++) {
-        virusArr[i].eatVirus();
+    if (virusArr[0] !== undefined) {
+        for (var i = 0; i < virusArr.length; i++) {
+            virusArr[i].eatVirus();
+        }
     }
-    for (var i = 0; i < sanitArr.length; i++) {
-        sanitArr[i].eatSanitar();
+    if (sanitArr[0] !== undefined) {
+        for (var i = 0; i < sanitArr.length; i++) {
+            sanitArr[i].eatSanitar();
+        }
     }
     // for (var i = 0; i < megaVirusArr.length; i++) {
     //     megaVirusArr[i].eatMegaVirus();
     // }
+
     let sendData = {
         matrix: matrix,
         grassCount: grassHashiv
     }
-    io.sockets.emit("data",sendData);
+    io.sockets.emit("data", sendData);
 }
 
-setInterval(game,1000)
+setInterval(game, 1000)
 

@@ -1,4 +1,10 @@
 const Base = require("./class.base");
+const random = require("./random")
+const Grass = require("./class.grass")
+const GrassEater = require("./class.grasseater")
+const Pred = require("./class.predator")
+const Virus = require("./class.virus")
+const Sanitar = require("./class.sanitar")
 
 module.exports = class Virus extends Base {
     constructor(x, y) {
@@ -97,9 +103,9 @@ module.exports = class Virus extends Base {
 
             matrix[y][x] = 0;
 
-            for (var i in grassEater) {
-                if (x == grassEater[i].x && y == grassEater[i].y) {
-                    grassEater.splice(i, 1);
+            for (var i in grassEaterArr) {
+                if (x == grassEaterArr[i].x && y == grassEaterArr[i].y) {
+                    grassEaterArr.splice(i, 1);
                     this.count++;
                     break;
                 }
@@ -122,7 +128,7 @@ module.exports = class Virus extends Base {
                 if (this.x == virusArr[i].x && this.y == virusArr[i].y) {
                     virusArr.splice(i, 1);
 
-                    if (grassArr.length <= grassEater.length) {
+                    if (grassArr.length <= grassEaterArr.length) {
                         if (grassArr.length <= predArr.length) {
                             var newGrass = new Grass(this.x, this.y);
                             grassArr.push(newGrass);
@@ -134,10 +140,10 @@ module.exports = class Virus extends Base {
                             matrix[this.y][this.x] = 3;
                         }
                     }
-                    else if (grassEater.length < grassArr.length) {
-                        if (grassEater.length <= predArr.length) {
+                    else if (grassEaterArr.length < grassArr.length) {
+                        if (grassEaterArr.length <= predArr.length) {
                             var newGrass = new GrassEater(this.x, this.y);
-                            grassEater.push(newGrass);
+                            grassEaterArr.push(newGrass);
                             matrix[this.y][this.x] = 2;
                         }
                         else {

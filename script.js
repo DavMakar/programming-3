@@ -1,192 +1,61 @@
 
-
-var matrix = [];
-var megaVirusArr = [];
-var sanitArr = [];
-var predArr = [];
-var grassArr = [];
-var grassEater = [];
-
-var virusArr = [];
-var side = 20;
-var m = 30;
-var n = 30;
-var weather = 1;
-var textweather = document.getElementById("exanak");
-var iradarcutyun = document.getElementById("b1");
-
-
-
-
-setInterval(function () {
-
-    weather++; if (weather > 4) {
-        weather = 1;
-    }
- 
-}, 3000);
-
-function myfunction() {
-
-    if (weather == 2)
-        textweather.innerHTML = "Amar";
-    else if (weather == 3) {
-        textweather.innerHTML = "Ashun";
-    }
-    else if (weather == 4) {
-        textweather.innerHTML = "Dzmer";
-    }
-    else {
-        textweather.innerHTML = "Garun";
-    }
-}
-
-
 function setup() {
- 
-    frameRate(13);
+    const socket = io();
+    const side = 20;
+    var matrix = [];
 
-   
-    // for (var y = 0; y < n; y++) {
-    //     matrix[y] = [];
+    let grassCountElement = document.getElementById('grassCount');
+    let grassEaterCountElement = document.getElementById('grassEaterCount');
+    var weather = 1;
+    var textweather = document.getElementById("exanak");
+    var iradarcutyun = document.getElementById("b1");
 
-    //     for (var x = 0; x < m; x++) {
-    //         matrix[y][x] = Math.round(Math.random() * 3);
-    //     }
-    // }
+    setInterval(function () {
 
-    // matrix[Math.floor(random(m))][Math.floor(random(n))] = 4;
-    // matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
-    // matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
-    // matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
-   
-    // for (var y = 0; y < matrix.length; y++) {
-    //     for (var x = 0; x < matrix[y].length; x++) {
-    //         if (matrix[y][x] == 1) {
-    //             var gr = new Grass(x, y);
-    //             grassArr.push(gr);
-    //         }
-    //         else if (matrix[y][x] == 2) {
-
-    //             var gre = new GrassEater(x, y);
-    //             grassEater.push(gre);
-    //         }
-    //         else if (matrix[y][x] == 3) {
-    //             var pre = new Pred(x, y);
-    //             predArr.push(pre);
-    //         }
-    //         else if (matrix[y][x] == 4) {
-    //             var vir = new Virus(x, y);
-    //             virusArr.push(vir);
-    //         }
-    //         else if (matrix[y][x] == 5) {
-    //             var sani = new Sanitar(x, y);
-    //             sanitArr.push(sani);
-    //         }
-    //         else if (matrix[y][x] == 6) {
-    //             var newMegaVirus = new MegaVirus(x, y);
-    //             megaVirusArr.push(newMegaVirus);
-    //         }
-    //     }
-
-    // }
-
-}
-function draw() {
-
-    /*var timerId = setInterval(function() {
-       console.log("Unikal");
-        /* for (var i in grassArr) {
-           grassArr[i].mult();
+        weather++; if (weather > 4) {
+            weather = 1;
         }
-        for (var i in grassEater) {
-            grassEater[i].die();
+
+    }, 3000);
+
+    function myfunction() {
+
+        if (weather == 2)
+            textweather.innerHTML = "Amar";
+        else if (weather == 3) {
+            textweather.innerHTML = "Ashun";
         }
-    
-        for (var i in predArr) {
-            predArr[i].diePred();
+        else if (weather == 4) {
+            textweather.innerHTML = "Dzmer";
         }
-    
-        for (var i = 0; i < virusArr.length; i++) {
-            virusArr[i].dieVirus ();
+        else {
+            textweather.innerHTML = "Garun";
         }
-        for (var i = 0; i < sanitArr.length; i++) {
-            sanitArr[i].dieSanitar ();
-      }
-      }, 20000);*/
-
-    drawMatrix();
-
-    for (var i in grassArr) {
-        grassArr[i].mult();
-    }
-    for (var i in grassEater) {
-        grassEater[i].eat();
     }
 
-    for (var i in predArr) {
-        predArr[i].eatPred();
-    }
-
-    for (var i = 0; i < virusArr.length; i++) {
-        virusArr[i].eatVirus();
-    }
-    for (var i = 0; i < sanitArr.length; i++) {
-        sanitArr[i].eatSanitar();
-    }
-    // for (var i = 0; i < megaVirusArr.length; i++) {
-    //     megaVirusArr[i].eatMegaVirus();
-    // }
-
-}
+    socket.on("data", drawCreatures);
 
 
+    function drawCreatures(data) {
 
-function drawMatrix(data) {
-    matrix = data.matrix;
-  
-    createCanvas(matrix[0].length * side + 1, matrix.length * side + 1);
+        matrix = data.matrix;
+
+        grassCountElement.innerText= data.grassCount
+
+        createCanvas(matrix[0].length * side + 1, matrix.length * side + 1);
+
         background('#acacac');
 
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            myfunction();
-            if (matrix[y][x] == 1) {
-                fill(109, 241, 9);
-                rect(x * side, y * side, side, side);
-            }
-            else if (matrix[y][x] == 0) {
-                fill("#acacac");
-                rect(x * side, y * side, side, side);
-            }
-            else if (matrix[y][x] == 2) {
-                fill("yellow");
-                rect(x * side, y * side, side, side);
-            }
-            else if (matrix[y][x] == 3) {
-                fill("red");
-                rect(x * side, y * side, side, side);
-            }
-            else if (matrix[y][x] == 4) {
+        matrix = data.matrix;
 
-                fill(0, 0, 0, 255);
+        createCanvas(matrix[0].length * side + 1, matrix.length * side + 1);
+        background('#acacac');
 
-                rect(x * side, y * side, side, side);
-            }
-            else if (matrix[y][x] == 5) {
-
-                fill(73, 255, 131, 255);
-                rect(x * side, y * side, side, side);
-            }
-            // else if (matrix[y][x] == 6) {
-            //     fill(5, 17, 255, 255);
-            //     rect(x * side, y * side, side, side);
-            // }
-
-            if (weather == 4) {
+        for (var y = 0; y < matrix.length; y++) {
+            for (var x = 0; x < matrix[y].length; x++) {
                 myfunction();
                 if (matrix[y][x] == 1) {
-                    fill("white");
+                    fill(109, 241, 9);
                     rect(x * side, y * side, side, side);
                 }
                 else if (matrix[y][x] == 0) {
@@ -216,80 +85,112 @@ function drawMatrix(data) {
                 //     fill(5, 17, 255, 255);
                 //     rect(x * side, y * side, side, side);
                 // }
-            }
-            if (weather == 3) {
 
-                myfunction();
-                if (matrix[y][x] == 1) {
-                    fill(155, 119, 3);
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 0) {
-                    fill("#acacac");
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 2) {
-                    fill("yellow");
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 3) {
-                    fill("red");
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 4) {
+                if (weather == 4) {
+                    myfunction();
+                    if (matrix[y][x] == 1) {
+                        fill("white");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 0) {
+                        fill("#acacac");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 2) {
+                        fill("yellow");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 3) {
+                        fill("red");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 4) {
 
-                    fill(0, 0, 0, 255);
+                        fill(0, 0, 0, 255);
 
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 5) {
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 5) {
 
-                    fill(73, 255, 131, 255);
-                    rect(x * side, y * side, side, side);
+                        fill(73, 255, 131, 255);
+                        rect(x * side, y * side, side, side);
+                    }
+                    // else if (matrix[y][x] == 6) {
+                    //     fill(5, 17, 255, 255);
+                    //     rect(x * side, y * side, side, side);
+                    // }
                 }
-                // else if (matrix[y][x] == 6) {
-                //     fill(5, 17, 255, 255);
-                //     rect(x * side, y * side, side, side);
-                // }
-            }
-            if (weather == 2) {
-                myfunction();
-                if (matrix[y][x] == 1) {
-                    fill("green");
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 0) {
-                    fill("#acacac");
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 2) {
-                    fill("yellow");
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 3) {
-                    fill("red");
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 4) {
+                if (weather == 3) {
 
-                    fill(0, 0, 0, 255);
+                    myfunction();
+                    if (matrix[y][x] == 1) {
+                        fill(155, 119, 3);
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 0) {
+                        fill("#acacac");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 2) {
+                        fill("yellow");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 3) {
+                        fill("red");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 4) {
 
-                    rect(x * side, y * side, side, side);
-                }
-                else if (matrix[y][x] == 5) {
+                        fill(0, 0, 0, 255);
 
-                    fill(73, 255, 131, 255);
-                    rect(x * side, y * side, side, side);
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 5) {
+
+                        fill(73, 255, 131, 255);
+                        rect(x * side, y * side, side, side);
+                    }
+                    // else if (matrix[y][x] == 6) {
+                    //     fill(5, 17, 255, 255);
+                    //     rect(x * side, y * side, side, side);
+                    // }
                 }
-                // else if (matrix[y][x] == 6) {
-                //     fill(5, 17, 255, 255);
-                //     rect(x * side, y * side, side, side);
-                // }
+                if (weather == 2) {
+                    myfunction();
+                    if (matrix[y][x] == 1) {
+                        fill("green");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 0) {
+                        fill("#acacac");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 2) {
+                        fill("yellow");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 3) {
+                        fill("red");
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 4) {
+
+                        fill(0, 0, 0, 255);
+
+                        rect(x * side, y * side, side, side);
+                    }
+                    else if (matrix[y][x] == 5) {
+
+                        fill(73, 255, 131, 255);
+                        rect(x * side, y * side, side, side);
+                    }
+                    // else if (matrix[y][x] == 6) {
+                    //     fill(5, 17, 255, 255);
+                    //     rect(x * side, y * side, side, side);
+                    // }
+                }
+
             }
         }
     }
 }
-
-
-
-
