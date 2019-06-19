@@ -1,6 +1,7 @@
 const Base =require("./class.base");
 const random = require("./random")
 
+
 module.exports = class Sanitar extends Base {
     constructor(x, y) {
         super(x,y)

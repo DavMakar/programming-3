@@ -1,15 +1,19 @@
 const Base = require("./class.base")
 const random = require("./random")
+const Virus = require("./class.virus")
 
 module.exports = class GrassEater extends Base {
     constructor(x, y) {
         super(x, y)
-        
+
         if (weather == 4) {
-            this.energy = 5;
+            this.energy = 4;
         }
-        else {
+        else if(weather == 2) {
             this.energy = 6;
+        }
+        else{
+            this.energy=5;
         }
     }
     getNewCoordinates() {
@@ -35,7 +39,7 @@ module.exports = class GrassEater extends Base {
 
         if (emptyCells.length != 0) {
             this.energy--;
-            
+
             var x = randomCells[0];
             var y = randomCells[1];
 
@@ -71,7 +75,7 @@ module.exports = class GrassEater extends Base {
         if (emptyCells.length != 0) {
 
             var randomCells = random(emptyCells);
-            
+
             var x = randomCells[0];
             var y = randomCells[1];
 
@@ -98,8 +102,6 @@ module.exports = class GrassEater extends Base {
     multGrEa() {
         if (this.energy >= 8) {
 
-
-
             var emptyCells = this.chooseCell(0);
 
             if (emptyCells.length != 0) {
@@ -113,43 +115,8 @@ module.exports = class GrassEater extends Base {
                 grassEaterArr.push(newGrassEater);
 
                 matrix[y][x] = 2;
-                if (weather == 4) {
-                    this.energy = 5;
-                } else {
-                    this.energy = 6;
-                }
 
             }
         }
     }
-}           /* else if (this.gender == 1) {
-                var emptyCells = this.chooseCell(0);
-
-                if (emptyCells.length != 0) {
-
-                    var randomCells = random(emptyCells);
-
-                    var x = randomCells[0];
-                    var y = randomCells[1];
-
-                    var newGrassEaterVorc = new GrassEater(x, y);
-                    grassEaterVorc.push(newGrassEaterVorc);
-
-                    matrix[y][x] = 2;
-                    if (weather == 4) {
-                        this.energy = 5;
-                    } else {
-                        this.energy = 6;
-                    }
-
-                }
-            }
-
-        }   
-    }
-}
-class GrassEaterEg extends GrassEater {
-    constructor(x, y) {
-    super(x, y)
-    }
-*/
+}          

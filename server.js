@@ -14,6 +14,7 @@ sanitArr = [];
 grassHashiv = 0;
 weather = 1;
 
+console.log(grassEaterArr)
 function matrixGenerator(n, m, virusArr, sanitArr) {
     for (var y = 0; y < n; y++) {
         matrix[y] = [];
@@ -33,7 +34,7 @@ function matrixGenerator(n, m, virusArr, sanitArr) {
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(30, 30, 1, 3)
+matrixGenerator(30, 30, 5, 3)
 
 var express = require('express');
 var app = express();
@@ -81,6 +82,14 @@ function creatingObjects() {
 creatingObjects()
 
 function game() {
+     let weather=1
+     weather++
+    if (weather > 10) {
+        weather = 1;
+    }
+
+
+
     if (grassArr[0] !== undefined) {
         for (var i in grassArr) {
             grassArr[i].mult();
@@ -112,7 +121,8 @@ function game() {
 
     let sendData = {
         matrix: matrix,
-        grassCount: grassHashiv
+        grassCount: grassHashiv,
+        weather:weather
     }
     io.sockets.emit("data", sendData);
 }

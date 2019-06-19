@@ -3,8 +3,8 @@ const random = require("./random")
 const Grass = require("./class.grass")
 const GrassEater = require("./class.grasseater")
 const Pred = require("./class.predator")
-const Virus = require("./class.virus")
-const Sanitar = require("./class.sanitar")
+
+
 
 module.exports = class Virus extends Base {
     constructor(x, y) {
@@ -53,20 +53,6 @@ module.exports = class Virus extends Base {
     chooseCell(character) {
 
         this.getNewCoordinates();
-
-       /* var found = [];
-
-        for (var i = 0; i < this.directions.length; ++i) {
-
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-
-        }*/
         return super.chooseCell(character);
 
     }
@@ -142,8 +128,7 @@ module.exports = class Virus extends Base {
                     }
                     else if (grassEaterArr.length < grassArr.length) {
                         if (grassEaterArr.length <= predArr.length) {
-                            var newGrass = new GrassEater(this.x, this.y);
-                            grassEaterArr.push(newGrass);
+                            grassEaterArr.push(new GrassEater(this.x, this.y))
                             matrix[this.y][this.x] = 2;
                         }
                         else {

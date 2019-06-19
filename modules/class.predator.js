@@ -1,6 +1,8 @@
 const Base = require('./class.base')
 const random = require("./random")
-module.exports=class Pred extends Base {
+const Virus = require("./class.virus")
+
+module.exports = class Pred extends Base {
     constructor(x, y) {
         super(x, y)
         this.energy = 3;
@@ -98,8 +100,7 @@ module.exports=class Pred extends Base {
         }
     }
     multPred() {
-        if (weather == 4) {
-            this.energy >= 28;
+        if (weather == 4 && this.energy >= 28) {
             var emptyCells = this.chooseCell(0);
 
             if (emptyCells.length != 0) {
@@ -115,10 +116,7 @@ module.exports=class Pred extends Base {
                 this.energy = 3;
             }
         }
-        else {
-            this.energy >= 32
-
-
+        else if (this.energy >= 32) {
             var emptyCells = this.chooseCell(0);
 
             if (emptyCells.length != 0) {
@@ -136,4 +134,5 @@ module.exports=class Pred extends Base {
         }
 
     }
+
 }
