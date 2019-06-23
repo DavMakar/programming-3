@@ -10,10 +10,12 @@ function setup() {
     let predCountElement=document.getElementById('predatorCount');
     let virusCountElement =document.getElementById('virusCount');
     let sanitarCountElement = document.getElementById('sanitarCount');
-    let bombCreateButton =document.getElementById('unic');
+    let backgroundColorChange =document.getElementById('unic');
 
     var textweather = document.getElementById("exanak");
- 
+    
+    var colors=['green','red','blue','yellow','orange','grey']
+
 
 
     
@@ -46,10 +48,10 @@ function setup() {
         virusCountElement.innerHTML=data.virusCount
         sanitarCountElement.innerHTML=data.sanitarCount
         
-        // bombCreateButton.addEventListener('click',()=>{
-        //     bombCreateCord = matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
-            
-        // })
+        backgroundColorChange.addEventListener('click',()=>{
+
+            document.body.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)]
+        })
 
         createCanvas(matrix[0].length * side + 1, matrix.length * side + 1);
 

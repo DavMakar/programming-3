@@ -1,8 +1,8 @@
-const Grass = require("./modules/class.grass")
-const GrassEater = require("./modules/class.grassEater")
-const Pred = require("./modules/class.predator")
-const Virus = require("./modules/class.virus")
-const Sanitar = require("./modules/class.sanitar")
+const Grass = require("./modules/grass")
+const GrassEater = require("./modules/grassEater")
+const Pred = require("./modules/predator")
+const Virus = require("./modules/virus")
+const Sanitar = require("./modules/sanitar")
 const random = require("./modules/random");
 
 
@@ -23,13 +23,18 @@ sanitarHashiv=0;
 weather = 1;
 
 //console.log(grassEaterArr)
-function matrixGenerator(n, m, virusArr, sanitArr) {
+function matrixGenerator(n, m,predArr, virusArr, sanitArr) {
     for (var y = 0; y < n; y++) {
         matrix[y] = [];
 
         for (var x = 0; x < m; x++) {
-            matrix[y][x] = Math.round(Math.random() * 3);
+            matrix[y][x] = Math.round(Math.random() * 2);
         }
+    }
+    for (let i = 0; i < predArr; i++) {
+        let customX = Math.floor(random(n));
+        let customY = Math.floor(random(m));
+        matrix[customY][customX] = 3;
     }
     for (let i = 0; i < virusArr; i++) {
         let customX = Math.floor(random(n));
@@ -42,13 +47,13 @@ function matrixGenerator(n, m, virusArr, sanitArr) {
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(30, 30, 5, 3)
+matrixGenerator(30, 30, 20, 10,15)
 
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-app.use(express.static("."));
+app.use(express.static("./"));
 app.get('/', function (req, res) {
     res.redirect('index.html');
 });

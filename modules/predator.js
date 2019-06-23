@@ -1,8 +1,6 @@
-const Base = require('./class.base')
+const Base = require('./base')
 const random = require("./random")
-const Virus = require("./class.virus")
 
-console.log(Virus);
 
 module.exports = class Pred extends Base {
     constructor(x, y) {
@@ -114,11 +112,11 @@ module.exports = class Pred extends Base {
             for (var i in predArr) {
                 if (this.x == predArr[i].x && this.y == predArr[i].y) {
                     predArr.splice(i, 1);
-                    var RNG = random(10);
-                    if (RNG >= 7) {
-                        matrix[this.y][this.x] = 4;
-                        virusArr.push(new Virus(this.x, this.y));
-                    }
+                    // var RNG = random(10)
+                    // if (RNG >= 7) {
+                    //     matrix[this.y][this.x] = 4;
+                    //     virusArr.push(new Virus(this.x, this.y));
+                    // }
                     break;
                 }
             }

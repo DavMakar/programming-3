@@ -1,5 +1,7 @@
-const Base =require("./class.base");
+const Base =require("./base");
 const random = require("./random")
+const GrassEater=require("./grassEater")
+const Pred= require("./predator")
 
 
 module.exports = class Sanitar extends Base {
@@ -103,16 +105,25 @@ module.exports = class Sanitar extends Base {
             matrix[this.y][this.x] = 0;
             for (var i in sanitArr) {
                 if (this.x == sanitArr[i].x && this.y == sanitArr[i].y) {
-
                     sanitArr.splice(i, 1);
-
+                    var RNG = random(10);
+                    if (RNG >= 7) {
+                        matrix[this.y][this.x] = 2;
+                        grassEaterArr.push(new GrassEater(this.x, this.y));
+                        grassEaterHashiv++
+                    }
+                    else{
+                        matrix[this.y][this.x] = 3;
+                        predArr.push(new Pred(this.x, this.y));
+                        predHashiv++
+                    }
                     break;
                 }
             }
         }
     }
     multSanitar() {
-        if (this.healt >= 160 && this.kerac >= 3) {
+        if (this.healt >= 120 && this.kerac >= 2) {
 
             var emptyCells = this.chooseCell(0);
 

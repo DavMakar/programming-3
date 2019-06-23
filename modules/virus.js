@@ -1,10 +1,9 @@
-const Base = require("./class.base");
+const Base = require("./base");
 const random = require("./random")
-const Grass = require("./class.grass")
-const GrassEater = require("./class.grassEater")
-const Pred = require("./class.predator")
 
 
+// console.log(GrassEater);
+// console.log(Grass);
 
 
 module.exports = class Virus extends Base {
@@ -111,42 +110,40 @@ module.exports = class Virus extends Base {
 
     dieVirus() {
         if (this.count >= 3 || this.kadr >= 6) {
+            matrix[this.y][this.x] = 0;
             for (var i in virusArr) {
                 if (this.x == virusArr[i].x && this.y == virusArr[i].y) {
                     virusArr.splice(i, 1);
 
-                    if (grassArr.length <= grassEaterArr.length) {
-                        if (grassArr.length <= predArr.length) {
-                            var newGrass = new Grass(this.x, this.y);
-                            grassArr.push(newGrass);
-                            matrix[this.y][this.x] = 1;
-                        }
-                        else {
-                            var newPred = new Pred(this.x, this.y);
-                            predArr.push(newPred);
-                            matrix[this.y][this.x] = 3;
-                        }
-                    }
-                    else if (grassEaterArr.length < grassArr.length) {
-                        if (grassEaterArr.length <= predArr.length) {
-                            var newGrassEater= new GrassEater(this.x, this.y);
-                            
-                            grassEaterArr.push(newGrassEater)
-                            matrix[this.y][this.x] = 2;
-                        }
-                        else {
-                            var newPred = new Pred(this.x, this.y);
-                            predArr.push(newPred);
-                            matrix[this.y][this.x] = 3;
-                        }
-                    }
-                    else {
-                        var newPred = new Pred(this.x, this.y);
-                        predArr.push(newPred);
-                        matrix[this.y][this.x] = 3;
-                    }
-                    
-
+                    // if (grassArr.length <= grassEaterArr.length) {
+                    //     if (grassArr.length <= predArr.length) {
+                    //         var newGrass = new Grass(this.x, this.y);
+                    //         grassArr.push(newGrass);
+                    //         matrix[this.y][this.x] = 1;
+                    //     }
+                    //     else {
+                    //         var newPred = new Pred(this.x, this.y);
+                    //         predArr.push(newPred);
+                    //         matrix[this.y][this.x] = 3;
+                    //     }
+                    // }
+                    // else if (grassEaterArr.length < grassArr.length) {
+                    //     if (grassEaterArr.length <= predArr.length) {
+                    //         var newGrassEater= new GrassEater(this.x, this.y);
+                    //         grassEaterArr.push(newGrassEater)
+                    //         matrix[this.y][this.x] = 2;
+                    //     }
+                    //     else {
+                    //         var newPred = new Pred(this.x, this.y);
+                    //         predArr.push(newPred);
+                    //         matrix[this.y][this.x] = 3;
+                    //     }
+                    // }
+                    // else {
+                    //     var newPred = new Pred(this.x, this.y);
+                    //     predArr.push(newPred);
+                    //     matrix[this.y][this.x] = 3;
+                    // }
                     break;
                 }
             }

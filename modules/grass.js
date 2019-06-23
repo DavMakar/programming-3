@@ -1,5 +1,6 @@
-const Base = require("./class.base")
+const Base = require("./base")
 const random = require("./random")
+
 module.exports = class Grass extends Base {
     constructor(x, y) {
         super(x, y)
@@ -33,7 +34,7 @@ module.exports = class Grass extends Base {
       
           var emptyCells = this.chooseCell(0);
             
-            if (emptyCells.length != 0 && this.multiply >= 4) {
+            if (emptyCells.length != 0 && this.multiply >= 3) {
 
                 var randomCells = random(emptyCells);
                 var x = randomCells[0];
@@ -41,8 +42,8 @@ module.exports = class Grass extends Base {
 
                 var newGrass = new Grass(x, y);
                 grassArr.push(newGrass);
-
                 matrix[y][x] = 1;
+                // console.log(grassArr);
             }
         }
         else{ 
@@ -59,6 +60,7 @@ module.exports = class Grass extends Base {
                 grassArr.push(newGrass);
 
                 matrix[y][x] = 1;
+                // console.log(grassArr);
             }
         }
     }
