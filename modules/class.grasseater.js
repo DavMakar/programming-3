@@ -2,6 +2,7 @@ const Base = require("./class.base")
 const random = require("./random")
 const Virus = require("./class.virus")
 
+
 module.exports = class GrassEater extends Base {
     constructor(x, y) {
         super(x, y)

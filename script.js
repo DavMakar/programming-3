@@ -54,7 +54,7 @@ function setup() {
         createCanvas(matrix[0].length * side + 1, matrix.length * side + 1);
 
         background('#acacac');
-        console.log(weather);
+        //console.log(weather);
 
    
         

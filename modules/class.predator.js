@@ -1,6 +1,9 @@
 const Base = require('./class.base')
 const random = require("./random")
 const Virus = require("./class.virus")
+const GrassEater= require("./class.grassEater")
+
+console.log(GrassEater);
 
 module.exports = class Pred extends Base {
     constructor(x, y) {

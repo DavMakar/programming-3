@@ -1,8 +1,9 @@
 const Base = require("./class.base");
 const random = require("./random")
 const Grass = require("./class.grass")
-const GrassEater = require("./class.grasseater")
+const GrassEater = require("./class.grassEater")
 const Pred = require("./class.predator")
+
 
 
 
@@ -128,8 +129,9 @@ module.exports = class Virus extends Base {
                     }
                     else if (grassEaterArr.length < grassArr.length) {
                         if (grassEaterArr.length <= predArr.length) {
-                            console.log(grassEaterArr[1]);
-                            grassEaterArr.push(new GrassEater(this.x, this.y))
+                            var newGrassEater= new GrassEater(this.x, this.y);
+                            
+                            grassEaterArr.push(newGrassEater)
                             matrix[this.y][this.x] = 2;
                         }
                         else {

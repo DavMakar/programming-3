@@ -1,9 +1,11 @@
 const Grass = require("./modules/class.grass")
-const GrassEater = require("./modules/class.grasseater")
+const GrassEater = require("./modules/class.grassEater")
 const Pred = require("./modules/class.predator")
 const Virus = require("./modules/class.virus")
 const Sanitar = require("./modules/class.sanitar")
 const random = require("./modules/random");
+
+//console.log(GrassEater);
 
 matrix = [];
 grassArr = [];
@@ -19,7 +21,7 @@ sanitarHashiv=0;
 
 weather = 1;
 
-console.log(grassEaterArr)
+//console.log(grassEaterArr)
 function matrixGenerator(n, m, virusArr, sanitArr) {
     for (var y = 0; y < n; y++) {
         matrix[y] = [];
