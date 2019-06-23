@@ -119,6 +119,7 @@ module.exports = class Sanitar extends Base {
             if (emptyCells.length != 0) {
 
                 var rand = random(emptyCells);
+                sanitarHashiv++;
                 var x = rand[0];
                 var y = rand[1];
 

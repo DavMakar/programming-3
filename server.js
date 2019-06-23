@@ -12,6 +12,11 @@ predArr = [];
 virusArr = [];
 sanitArr = [];
 grassHashiv = 0;
+grassEaterHashiv=0;
+predHashiv=0;
+virusHashiv=0;
+sanitarHashiv=0;
+
 weather = 1;
 
 console.log(grassEaterArr)
@@ -58,18 +63,22 @@ function creatingObjects() {
 
                 var gre = new GrassEater(x, y);
                 grassEaterArr.push(gre);
+                grassEaterHashiv++;
             }
             else if (matrix[y][x] == 3) {
                 var pre = new Pred(x, y);
                 predArr.push(pre);
+                predHashiv++;
             }
             else if (matrix[y][x] == 4) {
                 var vir = new Virus(x, y);
                 virusArr.push(vir);
+                virusHashiv++;
             }
             else if (matrix[y][x] == 5) {
                 var sani = new Sanitar(x, y);
                 sanitArr.push(sani);
+                sanitarHashiv++;
             }
             // else if (matrix[y][x] == 6) {
             //     var newMegaVirus = new MegaVirus(x, y);
@@ -82,9 +91,10 @@ function creatingObjects() {
 creatingObjects()
 
 function game() {
-     let weather=1
+
+    
      weather++
-    if (weather > 10) {
+    if (weather > 16) {
         weather = 1;
     }
 
@@ -122,6 +132,10 @@ function game() {
     let sendData = {
         matrix: matrix,
         grassCount: grassHashiv,
+        grassEaterCount: grassEaterHashiv,
+        predCount: predHashiv,
+        virusCount:virusHashiv,
+        sanitarCount:sanitarHashiv,
         weather:weather
     }
     io.sockets.emit("data", sendData);

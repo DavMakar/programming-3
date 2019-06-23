@@ -8,16 +8,41 @@ module.exports = class Pred extends Base {
         this.energy = 3;
     }
     getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+        if (weather >= 12 && weather < 16) {
+            this.directions = [
+                [this.x - 1, this.y - 1],
+                [this.x, this.y - 1],
+                [this.x + 1, this.y - 1],
+                [this.x - 1, this.y],
+                [this.x + 1, this.y],
+                [this.x - 1, this.y + 1],
+                [this.x, this.y + 1],
+                [this.x + 1, this.y + 1],
+                [this.x - 1, this.y - 2],
+                [this.x, this.y - 2],
+                [this.x + 2, this.y - 1],
+                [this.x - 2, this.y],
+                [this.x + 2, this.y],
+                [this.x - 2, this.y + 1],
+                [this.x, this.y + 2],
+                [this.x + 1, this.y + 2]
+                
+
+            ];
+        }
+        else {
+            this.directions = [
+                [this.x - 1, this.y - 1],
+                [this.x, this.y - 1],
+                [this.x + 1, this.y - 1],
+                [this.x - 1, this.y],
+                [this.x + 1, this.y],
+                [this.x - 1, this.y + 1],
+                [this.x, this.y + 1],
+                [this.x + 1, this.y + 1]
+            ];
+        }
+
     }
     chooseCell(character) {
         this.getNewCoordinates();
@@ -27,11 +52,11 @@ module.exports = class Pred extends Base {
     movePred() {
 
         var emptyCells = this.chooseCell(0);
-        if (weather == 4) {
-            this.energy -= 5;
+        if (weather >= 12 && weather < 16) {
+            this.energy -=7;
         } else {
 
-            this.energy -= 4;
+            this.energy -= 8;
         }
 
         if (emptyCells.length != 0) {
@@ -100,11 +125,11 @@ module.exports = class Pred extends Base {
         }
     }
     multPred() {
-        if (weather == 4 && this.energy >= 28) {
+        if ((weather >= 12 && weather<16) && this.energy >= 30) {
             var emptyCells = this.chooseCell(0);
 
             if (emptyCells.length != 0) {
-
+                predHashiv++;
                 var randomCells = random(emptyCells);
                 var x = randomCells[0];
                 var y = randomCells[1];
@@ -116,7 +141,7 @@ module.exports = class Pred extends Base {
                 this.energy = 3;
             }
         }
-        else if (this.energy >= 32) {
+        else if(this.energy>=28) {
             var emptyCells = this.chooseCell(0);
 
             if (emptyCells.length != 0) {
@@ -124,6 +149,7 @@ module.exports = class Pred extends Base {
                 var randomCells = random(emptyCells);
                 var x = randomCells[0];
                 var y = randomCells[1];
+                predHashiv++
 
                 var newPred = new Pred(x, y);
                 predArr.push(newPred);

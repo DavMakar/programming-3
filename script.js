@@ -3,44 +3,61 @@ function setup() {
     const socket = io();
     const side = 20;
     var matrix = [];
+    let weather=1;
 
     let grassCountElement = document.getElementById('grassCount');
     let grassEaterCountElement = document.getElementById('grassEaterCount');
-  
+    let predCountElement=document.getElementById('predatorCount');
+    let virusCountElement =document.getElementById('virusCount');
+    let sanitarCountElement = document.getElementById('sanitarCount');
+    let bombCreateButton =document.getElementById('unic');
+
     var textweather = document.getElementById("exanak");
  
 
 
-    function myfunction() {
-
-        if (weather == 4)
-            textweather.innerHTML = "Amar";
-        else if (weather == 7) {
-            textweather.innerHTML = "Ashun";
-        }
-        else if (weather == 10) {
-            textweather.innerHTML = "Dzmer";
-        }
-        else {
-            textweather.innerHTML = "Garun";
-        }
-    }
+    
 
     socket.on("data", drawCreatures);
 
+    function myfunction() {
+
+            if (weather >= 4 && weather<8)
+                textweather.innerHTML = "Ամառ";
+            else if (weather >= 8 && weather <12) {
+                textweather.innerHTML = "Աշուն";
+            }
+            else if (weather >= 12 && weather<16) {
+                textweather.innerHTML = "Ձմեռ";
+            }
+            else if(weather<4){
+                textweather.innerHTML = "Գարուն";
+            }
+        }
 
     function drawCreatures(data) {
 
         matrix = data.matrix;
+        weather= data.weather;
 
         grassCountElement.innerText= data.grassCount
+        grassEaterCountElement.innerHTML=data.grassEaterCount
+        predCountElement.innerHTML=data.predCount
+        virusCountElement.innerHTML=data.virusCount
+        sanitarCountElement.innerHTML=data.sanitarCount
+        
+        // bombCreateButton.addEventListener('click',()=>{
+        //     bombCreateCord = matrix[Math.floor(random(m))][Math.floor(random(n))] = 5;
+            
+        // })
 
         createCanvas(matrix[0].length * side + 1, matrix.length * side + 1);
 
         background('#acacac');
+        console.log(weather);
 
-        matrix = data.matrix;
-
+   
+        
         for (var y = 0; y < matrix.length; y++) {
             for (var x = 0; x < matrix[y].length; x++) {
                 myfunction();
@@ -68,12 +85,12 @@ function setup() {
                 }
                 else if (matrix[y][x] == 5) {
 
-                    fill(73, 255, 131, 255);
+                    fill(73, 255, 255, 255);
                     rect(x * side, y * side, side, side);
                 }
               
 
-                if (data.weather == 10) {
+                if (weather >= 12 && weather<16) {
                     myfunction();
                     if (matrix[y][x] == 1) {
                         fill("white");
@@ -99,7 +116,7 @@ function setup() {
                     }
                     else if (matrix[y][x] == 5) {
 
-                        fill(73, 255, 131, 255);
+                        fill(73, 255, 255, 255);
                         rect(x * side, y * side, side, side);
                     }
                     // else if (matrix[y][x] == 6) {
@@ -107,7 +124,7 @@ function setup() {
                     //     rect(x * side, y * side, side, side);
                     // }
                 }
-                if (data.weather == 7) {
+                if (weather >= 8 && weather <12 ) {
 
                     myfunction();
                     if (matrix[y][x] == 1) {
@@ -134,7 +151,7 @@ function setup() {
                     }
                     else if (matrix[y][x] == 5) {
 
-                        fill(73, 255, 131, 255);
+                        fill(73, 255, 255, 255);
                         rect(x * side, y * side, side, side);
                     }
                     // else if (matrix[y][x] == 6) {
@@ -142,7 +159,7 @@ function setup() {
                     //     rect(x * side, y * side, side, side);
                     // }
                 }
-                if (data.weather == 4) {
+                if (weather >= 4 && weather<8) {
                     myfunction();
                     if (matrix[y][x] == 1) {
                         fill("green");
@@ -168,7 +185,7 @@ function setup() {
                     }
                     else if (matrix[y][x] == 5) {
 
-                        fill(73, 255, 131, 255);
+                        fill(73, 255, 255, 255);
                         rect(x * side, y * side, side, side);
                     }
                     // else if (matrix[y][x] == 6) {

@@ -128,6 +128,7 @@ module.exports = class Virus extends Base {
                     }
                     else if (grassEaterArr.length < grassArr.length) {
                         if (grassEaterArr.length <= predArr.length) {
+                            console.log(grassEaterArr[1]);
                             grassEaterArr.push(new GrassEater(this.x, this.y))
                             matrix[this.y][this.x] = 2;
                         }
@@ -159,6 +160,7 @@ module.exports = class Virus extends Base {
             if (emptyCells.length != 0) {
 
                 var rand = random(emptyCells);
+                virusHashiv++;
                 var x = rand[0];
                 var y = rand[1];
 

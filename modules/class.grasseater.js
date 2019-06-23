@@ -6,14 +6,14 @@ module.exports = class GrassEater extends Base {
     constructor(x, y) {
         super(x, y)
 
-        if (weather == 4) {
-            this.energy = 4;
+        if (weather >= 12 && weather<16) {
+            this.energy = 5;
         }
-        else if(weather == 2) {
+        else if(weather >= 4 && weather<8) {
             this.energy = 6;
         }
         else{
-            this.energy=5;
+            this.energy=7;
         }
     }
     getNewCoordinates() {
@@ -107,7 +107,7 @@ module.exports = class GrassEater extends Base {
             if (emptyCells.length != 0) {
 
                 var randomCells = random(emptyCells);
-
+                grassEaterHashiv++;
                 var x = randomCells[0];
                 var y = randomCells[1];
 
