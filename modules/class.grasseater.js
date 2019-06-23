@@ -2,7 +2,6 @@ const Base = require("./class.base")
 const random = require("./random")
 const Virus = require("./class.virus")
 
-
 module.exports = class GrassEater extends Base {
     constructor(x, y) {
         super(x, y)
@@ -61,7 +60,7 @@ module.exports = class GrassEater extends Base {
             for (var i in grassEaterArr) {
                 if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
                     grassEaterArr.splice(i, 1);
-                    var RNG = random(0, 10);
+                    var RNG = random(10);
                     if (RNG >= 5) {
                         matrix[this.y][this.x] = 4;
                         virusArr.push(new Virus(this.x, this.y));

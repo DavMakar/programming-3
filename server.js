@@ -5,6 +5,7 @@ const Virus = require("./modules/class.virus")
 const Sanitar = require("./modules/class.sanitar")
 const random = require("./modules/random");
 
+
 //console.log(GrassEater);
 
 matrix = [];
